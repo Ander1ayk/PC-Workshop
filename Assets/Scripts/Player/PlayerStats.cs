@@ -4,6 +4,7 @@ public class PlayerStats : ScriptableObject
 {
     [Header("Player Stats")]
     public float speed;
+    public float interactionRange;
     [Header("Mouse sensitivity")]
     [Range(0.1f, 10f)]
     public float mouseSensitivity;
