@@ -1,0 +1,10 @@
+using UnityEngine;
+[CreateAssetMenu(fileName = "PlayerStats", menuName = "ScriptableObjects/PlayerStats", order = 1)]
+public class PlayerStats : ScriptableObject
+{
+    [Header("Player Stats")]
+    public float speed;
+    [Header("Mouse sensitivity")]
+    [Range(0.1f, 10f)]
+    public float mouseSensitivity;
+}
