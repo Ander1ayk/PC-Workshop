@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d690ab3c3554af4695c34f11997ef45, type: 3}
   m_Name: PlayerStats
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStats
-  speed: 3
-  interactionRange: 0
+  speed: 15
+  interactionRange: 2
   mouseSensitivity: 4

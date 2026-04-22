@@ -27,7 +27,9 @@ public class PlayerMovement : MonoBehaviour
     {
         if (playerStats == null || characterController == null)
             return;
-        if(PlayerStateController.Instance.CurrentState != PlayerState.moving)
+        if(PlayerStateController.Instance == null)
+            return;
+        if (PlayerStateController.Instance.CurrentState != PlayerState.moving)
             return;
         MovingMouse();
         MovingPlayer();

@@ -10,6 +10,8 @@ public class PlayerStateController : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+
+            CurrentState = PlayerState.moving;
         }
         else
         {
