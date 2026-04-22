@@ -43,4 +43,11 @@ public class PlayerInteract : MonoBehaviour
             currentInteractable = null;
         }
     }
+    private void OnDrawGizmos()
+    {
+        if (cameraTransform == null)
+            return;
+        Gizmos.color = Color.green;
+        Gizmos.DrawRay(cameraTransform.position, cameraTransform.forward * playerStats.interactionRange);
+    }
 }
