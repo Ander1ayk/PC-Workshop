@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.UI;
 [CreateAssetMenu(fileName = "New Item Data", menuName = "ScriptableObjects/Item Data")]
 public class ItemsData : ScriptableObject
 {
@@ -9,6 +8,6 @@ public class ItemsData : ScriptableObject
     [TextArea]
     public string description;
     [Header("Needed Info")]
-    public Image itemImage;
+    public Sprite itemIcon;
     public GameObject itemPrefab;
 }

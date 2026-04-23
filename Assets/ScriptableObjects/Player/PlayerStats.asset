@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: PlayerStats
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStats
   speed: 15
-  interactionRange: 4
+  interactionRange: 5
   mouseSensitivity: 4

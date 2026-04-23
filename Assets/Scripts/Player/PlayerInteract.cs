@@ -18,29 +18,30 @@ public class PlayerInteract : MonoBehaviour
     {
         if (playerStats == null)
             return;
-        if (PlayerStateController.Instance.CurrentState != PlayerState.moving) return;
-
-        Ray ray =  new Ray(cameraTransform.position, cameraTransform.forward);
-        RaycastHit hit;
-        if(Physics.Raycast(ray, out hit, playerStats.interactionRange, interactableLayer))
+        if (PlayerStateController.Instance.CurrentState == PlayerState.moving || PlayerStateController.Instance.CurrentState == PlayerState.assembling)
         {
-            if(hit.collider.TryGetComponent(out IInteractable interactable))
+            Ray ray = new Ray(cameraTransform.position, cameraTransform.forward);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit, playerStats.interactionRange, interactableLayer))
             {
-                currentInteractable = interactable;
-                if (Input.GetKeyDown(KeyCode.E))
+                if (hit.collider.TryGetComponent(out IInteractable interactable))
                 {
-                    interactable.Interact();
-                    Debug.Log("Interacted with: " + hit.collider.name);
+                    currentInteractable = interactable;
+                    if (Input.GetKeyDown(KeyCode.E))
+                    {
+                        interactable.Interact();
+                        Debug.Log("Interacted with: " + hit.collider.name);
+                    }
+                }
+                else
+                {
+                    currentInteractable = null;
                 }
             }
             else
             {
                 currentInteractable = null;
             }
-        }
-        else
-        {
-            currentInteractable = null;
         }
     }
     private void OnDrawGizmos()
