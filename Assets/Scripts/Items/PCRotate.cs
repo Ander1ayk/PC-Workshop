@@ -22,7 +22,8 @@ public class PCRotate : MonoBehaviour, IInteractable
     public void Interact()
     {
         PlayerStateController.Instance.SetState(PlayerState.assembling);
-        
+
+        Cursor.lockState = CursorLockMode.Locked;
         foreach (var detail in detailsPC)
         {
             MeshRenderer meshRenderer = detail.GetComponent<MeshRenderer>();

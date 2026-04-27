@@ -22,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
         {
             Debug.LogError("CharacterController component is missing on the player.");
         }
+        Cursor.lockState = CursorLockMode.Locked;
     }
     private void Update()
     {

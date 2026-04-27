@@ -18,6 +18,7 @@ public class PlayerInteract : MonoBehaviour
     {
         if (playerStats == null)
             return;
+        if (PlayerStateController.Instance.CurrentState == PlayerState.ui) return;
         if (PlayerStateController.Instance.CurrentState == PlayerState.moving || PlayerStateController.Instance.CurrentState == PlayerState.assembling)
         {
             Ray ray = new Ray(cameraTransform.position, cameraTransform.forward);

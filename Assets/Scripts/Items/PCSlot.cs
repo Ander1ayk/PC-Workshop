@@ -7,26 +7,30 @@ public class PCSlot : MonoBehaviour, IInteractable
     public void Interact()
     {
         if (isInstalled) return;
-        // Make open inventory UI and choose the item to use on the PC slot, then check if the player has the item in the inventory and if so, remove it and trigger the desired effect.
-        //!!!!!!!!!!!!!!!!!!!!!!!!!!! This is just a placeholder for the actual inventory UI interaction, you will need to implement the inventory UI and item selection logic to make this work properly. !!!!!!!!!!!!!!!!!!!!!!!!!!!
-        if (Inventory.Instance.HasItem(itemData, 1))
+        PCAssemblyManager.Instance.StartPlacing(this);
+    }
+    public void TryInstall(ItemsData item)
+    {
+        if (item != itemData)
         {
-            Inventory.Instance.RemoveItem(itemData, 1);
-
-            isInstalled = true;
-
-            MeshRenderer meshRenderer = GetComponent<MeshRenderer>();
-            meshRenderer.enabled = true;
-            
-            GameEvents.InventoryChanged();
-            Debug.Log("Used " + itemData.itemName);
-            // Here you can add any additional logic for what happens when the item is used on the PC slot, such as unlocking a door, activating a machine, etc.
-        }
-        else
-        {
-            Debug.Log("You don't have " + itemData.itemName);
+            Debug.Log("Wrong item");
             GameEvents.MadeMistake();
+            return;
         }
+
+        if (!Inventory.Instance.HasItem(item, 1))
+        {
+            Debug.Log("No item in inventory");
+            return;
+        }
+
+        Inventory.Instance.RemoveItem(item, 1);
+
+        isInstalled = true;
+
+        GetComponent<MeshRenderer>().enabled = true;
+
+        Debug.Log("Installed " + item.itemName);
     }
     public bool IsInstalled() => isInstalled;
 }
