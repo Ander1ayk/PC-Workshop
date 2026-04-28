@@ -6,7 +6,7 @@ public class PlayerInteract : MonoBehaviour
     [SerializeField] private PlayerStats playerStats;
     [SerializeField] private Transform cameraTransform;
     [SerializeField] private LayerMask interactableLayer;
-    private IInteractable currentInteractable;
+    [SerializeField] private TMPro.TextMeshProUGUI pressToInteract;
     private void Start()
     {
         if (playerStats == null)
@@ -19,31 +19,43 @@ public class PlayerInteract : MonoBehaviour
         if (playerStats == null)
             return;
         if (PlayerStateController.Instance.CurrentState == PlayerState.ui) return;
-        if (PlayerStateController.Instance.CurrentState == PlayerState.moving || PlayerStateController.Instance.CurrentState == PlayerState.assembling)
+
+        Ray ray = new Ray(cameraTransform.position, cameraTransform.forward);
+        RaycastHit hit;
+
+        if (!Physics.Raycast(ray, out hit, playerStats.interactionRange, interactableLayer))
         {
-            Ray ray = new Ray(cameraTransform.position, cameraTransform.forward);
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, playerStats.interactionRange, interactableLayer))
+            pressToInteract.gameObject.SetActive(false);
+            return;
+        }
+
+        bool canShowInteract = false;
+        if (PlayerStateController.Instance.CurrentState == PlayerState.moving)
+        {
+            if (hit.collider.TryGetComponent(out IInteractable interactable))
             {
-                if (hit.collider.TryGetComponent(out IInteractable interactable))
+                canShowInteract = true;
+                if (Input.GetKeyDown(KeyCode.E))
                 {
-                    currentInteractable = interactable;
-                    if (Input.GetKeyDown(KeyCode.E))
-                    {
-                        interactable.Interact();
-                        Debug.Log("Interacted with: " + hit.collider.name);
-                    }
+                    interactable.Interact();
+                    Debug.Log("Interacted with: " + hit.collider.name);
                 }
-                else
-                {
-                    currentInteractable = null;
-                }
-            }
-            else
-            {
-                currentInteractable = null;
             }
         }
+        else if (PlayerStateController.Instance.CurrentState == PlayerState.assembling)
+        {
+
+            if (hit.collider.TryGetComponent(out IPCInteractable pcInteractable))
+            {
+                canShowInteract = true;
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    pcInteractable.InteractWithPC();
+                    Debug.Log("Interacted with: " + hit.collider.name);
+                }
+            }
+        }
+        pressToInteract.gameObject.SetActive(canShowInteract);
     }
     private void OnDrawGizmos()
     {

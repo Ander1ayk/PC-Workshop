@@ -1,10 +1,16 @@
 using UnityEngine;
 
-public class PCSlot : MonoBehaviour, IInteractable
+public class PCSlot : MonoBehaviour, IPCInteractable
 {
     public ItemsData itemData;
     private bool isInstalled = false;
-    public void Interact()
+    [SerializeField] private GameObject indicator;
+
+    private void Start()
+    {
+        indicator.SetActive(!isInstalled);
+    }
+    public void InteractWithPC()
     {
         if (isInstalled) return;
         PCAssemblyManager.Instance.StartPlacing(this);
@@ -29,6 +35,8 @@ public class PCSlot : MonoBehaviour, IInteractable
         isInstalled = true;
 
         GetComponent<MeshRenderer>().enabled = true;
+
+        indicator.SetActive(false);
 
         Debug.Log("Installed " + item.itemName);
     }
