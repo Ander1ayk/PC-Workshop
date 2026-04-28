@@ -38,6 +38,7 @@ public class PCSlot : MonoBehaviour, IPCInteractable
 
         indicator.SetActive(false);
 
+        QuestManager.Instance.UpdateQuestProgress(item.itemId, 1);
         Debug.Log("Installed " + item.itemName);
     }
     public bool IsInstalled() => isInstalled;

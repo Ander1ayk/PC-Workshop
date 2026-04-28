@@ -7,13 +7,10 @@ public class QuestData : ScriptableObject
     public string questId;
     public string questName;
     [TextArea]
-    public string description;
-    public string questTitle;
     public string questDescription;
-    public string questType;
     [Header("Progress")]
     public int currentProgress;
     public int requiredProgress;
     [Header("Needed items")]
-    List<ItemsData> requiredItems;
+    public List<ItemsData> requiredItems;
 }
