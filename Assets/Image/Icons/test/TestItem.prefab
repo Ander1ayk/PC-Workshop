@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3873302631316442615}
   - component: {fileID: 2292126323346653184}
   - component: {fileID: 8631920752692467227}
+  - component: {fileID: 586706011464329134}
   m_Layer: 3
   m_Name: TestItem
   m_TagString: Untagged
@@ -51,7 +52,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5427202210280221097}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -128,6 +129,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PCSlot
   itemData: {fileID: 11400000, guid: 7895468a89a9edc4ab1872dcc623ec9c, type: 2}
   indicator: {fileID: 6035359320474625267}
+--- !u!114 &586706011464329134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5427202210280221097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8006d0b4ea4ac2d42b6cc57bc90db054, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CollectItems
+  itemData: {fileID: 11400000, guid: 7895468a89a9edc4ab1872dcc623ec9c, type: 2}
 --- !u!1 &6035359320474625267
 GameObject:
   m_ObjectHideFlags: 0
