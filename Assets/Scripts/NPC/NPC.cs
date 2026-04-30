@@ -14,6 +14,9 @@ public class NPC : MonoBehaviour, IInteractable
     private bool currentIsWalking = false;
 
     private bool questTaken = false;
+    private NPCManager manager;
+
+    public NPCData dataNPC => npcData;
     private void Start()
     {
         if (npcData == null)
@@ -60,6 +63,7 @@ public class NPC : MonoBehaviour, IInteractable
         }
         if ((Vector3.Distance(transform.position, startPoint.transform.position) < 0.1f) && isCompletedQuest)
         {
+            manager.NPCFinished();
             Destroy(gameObject);
         }
     }
@@ -89,5 +93,13 @@ public class NPC : MonoBehaviour, IInteractable
             npcAnimator.SetTrigger("IsWalk");
             currentTarget = startPoint.transform;
         }
+    }
+    public void Setup(NPCManager manager, Transform start, Transform end)
+    {
+        this.manager = manager;
+        startPoint = start.gameObject;
+        endPoint = end.gameObject;
+
+        currentTarget = endPoint.transform;
     }
 }
