@@ -11,6 +11,7 @@ public class NPC : MonoBehaviour, IInteractable
     private Transform currentTarget;
     private bool isWaiting = false;
     private bool isCompletedQuest = false;
+    private bool currentIsWalking = false;
 
     private bool questTaken = false;
     private void Start()
