@@ -10,4 +10,5 @@ public class ItemsData : ScriptableObject
     [Header("Needed Info")]
     public Sprite itemIcon;
     public GameObject itemPrefab;
+    public bool isPCBox;
 }

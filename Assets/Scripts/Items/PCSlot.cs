@@ -32,6 +32,8 @@ public class PCSlot : MonoBehaviour, IPCInteractable
 
         Inventory.Instance.RemoveItem(item, 1);
 
+        GameEvents.SlotInstalled(this);
+
         isInstalled = true;
 
         GetComponent<MeshRenderer>().enabled = true;

@@ -17,4 +17,16 @@ public class ItemUI : MonoBehaviour
     {
         PCAssemblyManager.Instance.TryPlaceItem(itemData);
     }
+    public void SetupPCBox(ItemsData itemData, PCPlacementManager manager)
+    {
+        itemNameText.text = itemData.itemName;
+        itemButton.image.sprite = itemData.itemIcon;
+
+        itemButton.onClick.RemoveAllListeners();
+        itemButton.onClick.AddListener(() =>
+        {
+            Inventory.Instance.RemoveItem(itemData, 1);
+            manager.PlacePC(itemData.itemPrefab);
+        });
+    }
 }

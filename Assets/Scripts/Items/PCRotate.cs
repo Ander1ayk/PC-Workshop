@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class PCRotate : MonoBehaviour, IInteractable
@@ -10,6 +11,17 @@ public class PCRotate : MonoBehaviour, IInteractable
 
     private Vector3 startedPosition;
     private Quaternion startRotation;
+
+    private Coroutine destroyRoutine;
+    private bool isDestroying = false;
+    private bool isCompleted = false;
+
+    private int installedCount;
+    private int totalCount;
+    private void Awake()
+    {
+        totalCount = detailsPC.Length;
+    }
     private void Start()
     {
         if (playerStats == null)
@@ -82,5 +94,33 @@ public class PCRotate : MonoBehaviour, IInteractable
 
         transform.Rotate(Vector3.up, mouseX, Space.World);
         transform.Rotate(Vector3.right, -mouseY, Space.World);
+    }
+   
+    private IEnumerator DestroyPCAfterDelay()
+    {
+        yield return new WaitForSeconds(5f);
+
+        PlayerStateController.Instance.SetState(PlayerState.moving);
+
+        Destroy(gameObject);
+    }
+    private void OnEnable()
+    {
+        GameEvents.OnSlotInstalled += OnSlot;
+    }
+
+    private void OnDisable()
+    {
+        GameEvents.OnSlotInstalled -= OnSlot;
+    }
+    private void OnSlot(PCSlot slot)
+    {
+        installedCount++;
+
+        if (installedCount >= totalCount)
+        {
+            GameEvents.PCCompleted();
+            StartCoroutine(DestroyPCAfterDelay());
+        }
     }
 }

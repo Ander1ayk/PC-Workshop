@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class NPC : MonoBehaviour, IInteractable
@@ -12,6 +14,8 @@ public class NPC : MonoBehaviour, IInteractable
     private bool isWaiting = false;
     private bool isCompletedQuest = false;
     private bool currentIsWalking = false;
+    private bool isLeaving = false;
+    private bool canLeave = false;
 
     private bool questTaken = false;
     private NPCManager manager;
@@ -77,22 +81,29 @@ public class NPC : MonoBehaviour, IInteractable
     }
     private void OnEnable()
     {
-        GameEvents.OnQuestCompleted += HandleQuestCompleted;
+        GameEvents.OnPCCompleted += HandlePCDone;
     }
     private void OnDisable()
     {
-        GameEvents.OnQuestCompleted -= HandleQuestCompleted;
+        GameEvents.OnPCCompleted -= HandlePCDone;
     }
-    private void HandleQuestCompleted(QuestData questData)
+    IEnumerator WaitAndLeave()
     {
-        if (questData == npcData.npcQuest)
-        {
-            isCompletedQuest = true;
-            isWaiting = false;
+        isLeaving = true;
 
-            npcAnimator.SetTrigger("IsWalk");
-            currentTarget = startPoint.transform;
-        }
+        yield return new WaitForSeconds(5f);
+
+        isCompletedQuest = true;
+        isWaiting = false;
+
+        npcAnimator.SetTrigger("IsWalk");
+        currentTarget = startPoint.transform;
+    }
+    private void HandlePCDone()
+    {
+        if (isLeaving) return;
+
+        StartCoroutine(WaitAndLeave());
     }
     public void Setup(NPCManager manager, Transform start, Transform end)
     {

@@ -28,6 +28,22 @@ public class UIInventory : MonoBehaviour
             itemUI.GetComponent<ItemUI>().Setup(slot.itemData, slot.amount);
         }
     }
+    public void ShowPCBoxes(PCPlacementManager manager)
+    {
+        inventoryUI.SetActive(true);
+
+        foreach (Transform child in content)
+            Destroy(child.gameObject);
+
+        foreach (var slot in Inventory.Instance.slots)
+        {
+            if (slot.itemData.isPCBox)
+            {
+                var itemUI = Instantiate(itemUIPrefab, content);
+                itemUI.GetComponent<ItemUI>().SetupPCBox(slot.itemData, manager);
+            }
+        }
+    }
     private void OnEnable()
     {
         GameEvents.OnInventoryChanged += UpdateUI;

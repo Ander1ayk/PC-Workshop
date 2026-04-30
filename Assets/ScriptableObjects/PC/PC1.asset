@@ -17,3 +17,4 @@ MonoBehaviour:
   description: testing buy box for PC
   itemIcon: {fileID: 21300000, guid: 5d6fd171d519e7841b58e5c3797a8b0d, type: 3}
   itemPrefab: {fileID: 4163876715563175837, guid: 8e80ee95080412e46be4ed8c5eb034f2, type: 3}
+  isPCBox: 1

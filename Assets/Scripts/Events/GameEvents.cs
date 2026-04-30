@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 
 public static class GameEvents
 {
@@ -47,5 +48,17 @@ public static class GameEvents
     public static void NPCInteraction(bool isInteracting)
     {
         OnNPCInteraction?.Invoke(isInteracting);
+    }
+    // PC
+    public static event Action<PCSlot> OnSlotInstalled;
+    public static void SlotInstalled(PCSlot slot)
+    {
+        OnSlotInstalled?.Invoke(slot);
+    }
+    public static event Action OnPCCompleted;
+
+    public static void PCCompleted()
+    {
+        OnPCCompleted?.Invoke();
     }
 }
