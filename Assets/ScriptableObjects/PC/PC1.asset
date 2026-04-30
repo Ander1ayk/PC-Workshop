@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d080ea6fb25267648abf92b5086ebfef, type: 3}
+  m_Name: PC1
+  m_EditorClassIdentifier: Assembly-CSharp::ItemsData
+  itemId: 1100
+  itemName: For the first quest
+  description: testing buy box for PC
+  itemIcon: {fileID: 21300000, guid: 5d6fd171d519e7841b58e5c3797a8b0d, type: 3}
+  itemPrefab: {fileID: 4163876715563175837, guid: 8e80ee95080412e46be4ed8c5eb034f2, type: 3}
