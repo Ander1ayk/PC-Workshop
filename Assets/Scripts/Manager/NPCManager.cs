@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class NPCManager : MonoBehaviour
 {
+    public static NPCManager Instance { get; private set; }
     [Header("NPC Manager Components")]
     [SerializeField] private List<NPCSpawnData> npcPrefabs;
     [SerializeField] private Transform startPoint;
@@ -10,10 +11,17 @@ public class NPCManager : MonoBehaviour
 
     private int index = 0;
     private NPC currentNPC;
-
+    private void Awake()
+    {
+        Instance = this;
+    }
     private void Start()
     {
         npcPrefabs.Sort((a, b) => a.npcData.npcLevel.CompareTo(b.npcData.npcLevel));
+        if (SaveSystem.Instance.HasSaveData())
+        {
+            SaveSystem.Instance.LoadGame();
+        }
         SpawnNPC();
     }
 
@@ -36,6 +44,12 @@ public class NPCManager : MonoBehaviour
     public void NPCFinished()
     {
         index++;
+        SaveSystem.Instance.SaveGame();
         SpawnNPC();
     }
+    public void SetLevel(int currentLevel)
+    {
+        index = currentLevel;
+    }
+    public int GetCurrentLevel() => index;
 }
