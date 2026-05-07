@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Girl
   m_EditorClassIdentifier: Assembly-CSharp::NPCData
   npcName: Snejana
-  npcLevel: 1
+  npcLevel: 2
   npcSpeed: 5
-  npcQuest: {fileID: 11400000, guid: 2a1c32de23718b1438370f255747b2e2, type: 2}
+  npcQuest: {fileID: 11400000, guid: 898f3c9ad89618b4da9a3332fcc16c93, type: 2}

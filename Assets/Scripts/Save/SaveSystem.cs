@@ -53,6 +53,18 @@ public class SaveSystem : MonoBehaviour
             player.transform.eulerAngles = saveData.playerRotation;
         }
     }
+    public void DeleteSaveData()
+    {
+        if (File.Exists(saveFilePath))
+        {
+            File.Delete(saveFilePath);
+            Debug.Log("Save data deleted.");
+        }
+        else
+        {
+            Debug.LogWarning("No save file to delete!");
+        }
+    }
     public bool HasSaveData()
     {
         return File.Exists(saveFilePath);

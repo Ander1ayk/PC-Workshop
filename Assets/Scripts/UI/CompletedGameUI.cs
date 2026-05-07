@@ -15,4 +15,12 @@ public class CompletedGameUI : MonoBehaviour
         completedGamePanel.SetActive(true);
         mistakesCount.text = "Mistakes Made: " + PlayerStateController.Instance.GetMistakesCount();
     }
+    private void OnEnable()
+    {
+        GameEvents.OnGameCompleted += ShowCompletedGameUI;
+    }
+    private void OnDisable()
+    {
+        GameEvents.OnGameCompleted -= ShowCompletedGameUI;
+    }
 }

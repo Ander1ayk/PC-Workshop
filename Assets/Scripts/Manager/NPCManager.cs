@@ -30,6 +30,7 @@ public class NPCManager : MonoBehaviour
         if (index >= npcPrefabs.Count)
         {
             Debug.Log(" GAME COMPLETED");
+            GameEvents.GameCompleted();
             return;
         }
         GameObject npcObj = Instantiate(

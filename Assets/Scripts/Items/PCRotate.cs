@@ -6,6 +6,7 @@ public class PCRotate : MonoBehaviour, IInteractable
     [Header("Player Stats")]
     [SerializeField] private PlayerStats playerStats;
     public GameObject[] detailsPC;
+    public GameObject[] pcPanels;
     private float xRotation = 0f;
     private float yRotation = 0f;
 
@@ -50,6 +51,10 @@ public class PCRotate : MonoBehaviour, IInteractable
                 meshRenderer.enabled = false;
             }
         }
+        foreach (var panel in pcPanels)
+        {
+            panel.SetActive(false);
+        }
     }
     private void Update()
     {
@@ -85,6 +90,10 @@ public class PCRotate : MonoBehaviour, IInteractable
                 detail.gameObject.SetActive(false);
                 meshRenderer.enabled = false;
             }
+        }
+        foreach (var panel in pcPanels)
+        {
+            panel.SetActive(true);
         }
     }
     private void MovingMouse()

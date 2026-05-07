@@ -61,4 +61,10 @@ public static class GameEvents
     {
         OnPCCompleted?.Invoke();
     }
+    // Game
+    public static event Action OnGameCompleted;
+    public static void GameCompleted()
+    {
+        OnGameCompleted?.Invoke();
+    }
 }
