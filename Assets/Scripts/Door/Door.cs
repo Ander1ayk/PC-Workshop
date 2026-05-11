@@ -4,6 +4,7 @@ public class Door : MonoBehaviour
 {
     [SerializeField] private Animator doorAnimator;
     [SerializeField] private GameObject doorPrefab;
+    [SerializeField] private AudioClip doorSound;
 
     private void Start()
     {
@@ -17,6 +18,7 @@ public class Door : MonoBehaviour
         if (other.CompareTag("NPC"))
         {
             doorAnimator.SetTrigger("IsOpen");
+            AudioManager.Instance.PlaySFX(doorSound, 1f, doorPrefab.transform.position);
         }
     }
     private void OnTriggerExit(Collider other)
@@ -24,6 +26,7 @@ public class Door : MonoBehaviour
         if (other.CompareTag("NPC"))
         {
             doorAnimator.SetTrigger("IsClose");
+            AudioManager.Instance.PlaySFX(doorSound, 1f, doorPrefab.transform.position);
         }
     }
 }

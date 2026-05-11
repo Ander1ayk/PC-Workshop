@@ -44,4 +44,8 @@ public class PlayerStateController : MonoBehaviour
     {
         mistakesCount++;
     }
+    public PlayerState GetCurrentState()
+    {
+        return CurrentState;
+    }
 }

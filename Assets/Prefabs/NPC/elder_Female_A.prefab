@@ -1004,6 +1004,7 @@ MonoBehaviour:
   npcAnimator: {fileID: 6615896672624019808}
   startPoint: {fileID: 0}
   endPoint: {fileID: 0}
+  npcVoice: {fileID: 8300000, guid: 24cb65344d9958f48a902140074bfd0c, type: 3}
 --- !u!136 &6291037382311077930
 CapsuleCollider:
   m_ObjectHideFlags: 0

@@ -7,6 +7,7 @@ public class PCRotate : MonoBehaviour, IInteractable
     [SerializeField] private PlayerStats playerStats;
     public GameObject[] detailsPC;
     public GameObject[] pcPanels;
+    [SerializeField] private AudioClip completedSound;
     private float xRotation = 0f;
     private float yRotation = 0f;
 
@@ -110,6 +111,7 @@ public class PCRotate : MonoBehaviour, IInteractable
         yield return new WaitForSeconds(5f);
 
         PlayerStateController.Instance.SetState(PlayerState.moving);
+        AudioManager.Instance.PlaySFX(completedSound, 1f);
 
         Destroy(gameObject);
     }

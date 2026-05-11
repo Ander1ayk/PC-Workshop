@@ -8,6 +8,8 @@ public class ShopManager : MonoBehaviour
     [SerializeField] private Transform storeDelivery;
     [SerializeField] private GameObject[] boxForDelivery;
     private List<ItemsData> boughtItems;
+    [SerializeField] private AudioClip buySound;
+    [SerializeField] private AudioClip deliverSound;
     private void Awake()
     {
         if (Instance == null)
@@ -25,6 +27,7 @@ public class ShopManager : MonoBehaviour
         if (boughtItems == null)
             boughtItems = new List<ItemsData>();
         boughtItems.Add(item);
+        AudioManager.Instance.PlaySFX(buySound, 1f);
     }
     public void DeliverItems()
     {
@@ -36,5 +39,6 @@ public class ShopManager : MonoBehaviour
             box.GetComponent<BoxForDelivery>().Setup(item);
         }
         boughtItems.Clear();
+        AudioManager.Instance.PlaySFX(deliverSound, 1f);
     }
 }

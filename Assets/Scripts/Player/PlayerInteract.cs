@@ -7,6 +7,7 @@ public class PlayerInteract : MonoBehaviour
     [SerializeField] private Transform cameraTransform;
     [SerializeField] private LayerMask interactableLayer;
     [SerializeField] private TMPro.TextMeshProUGUI pressToInteract;
+    [SerializeField] private GameObject pausePanel;
     private void Start()
     {
         if (playerStats == null)
@@ -16,6 +17,11 @@ public class PlayerInteract : MonoBehaviour
     }
     private void Update()
     {
+        if(Input.GetKeyDown(KeyCode.T) && PlayerStateController.Instance.GetCurrentState() == PlayerState.moving)
+        {
+            TogglePause();
+        }
+
         if (playerStats == null)
             return;
         if (PlayerStateController.Instance.CurrentState == PlayerState.ui) return;
@@ -63,5 +69,11 @@ public class PlayerInteract : MonoBehaviour
             return;
         Gizmos.color = Color.green;
         Gizmos.DrawRay(cameraTransform.position, cameraTransform.forward * playerStats.interactionRange);
+    }
+    private void TogglePause()
+    {
+        pausePanel.SetActive(!pausePanel);
+        Time.timeScale = pausePanel.activeSelf ? 0 : 1;
+        Cursor.lockState = pausePanel.activeSelf ? CursorLockMode.None : CursorLockMode.Locked;
     }
 }

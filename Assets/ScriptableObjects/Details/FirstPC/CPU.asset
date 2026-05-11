@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d080ea6fb25267648abf92b5086ebfef, type: 3}
+  m_Name: CPU
+  m_EditorClassIdentifier: Assembly-CSharp::ItemsData
+  itemId: CPU1015
+  itemName: CPU
+  description: The "brain" or core engine of a PC (personal computer), responsible
+    for executing instructions and processing data to make the computer work.
+  itemIcon: {fileID: 21300000, guid: 096cbdf71be066a41aad013f008d8d03, type: 3}
+  itemPrefab: {fileID: 0}
+  isPCBox: 0

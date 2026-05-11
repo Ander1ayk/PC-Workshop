@@ -131,6 +131,8 @@ MonoBehaviour:
   playerStats: {fileID: 11400000, guid: afefc3775ae14f64a9a98e9c3cef8425, type: 2}
   detailsPC:
   - {fileID: 2315777291364915327}
+  pcPanels: []
+  completedSound: {fileID: 8300000, guid: 39b56d506db5e5148b97b0a1877f833c, type: 3}
 --- !u!1001 &7742251304613802454
 PrefabInstance:
   m_ObjectHideFlags: 0

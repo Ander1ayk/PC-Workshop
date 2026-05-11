@@ -19,10 +19,8 @@ MonoBehaviour:
   currentProgress: 0
   requiredProgress: 7
   requiredItems:
-  - {fileID: 11400000, guid: b239d9a09b15ec142bea7c59fb7adc2e, type: 2}
-  - {fileID: 11400000, guid: b239d9a09b15ec142bea7c59fb7adc2e, type: 2}
-  - {fileID: 11400000, guid: b239d9a09b15ec142bea7c59fb7adc2e, type: 2}
-  - {fileID: 11400000, guid: a80aa75a34fc3d34e8492790094c1e75, type: 2}
-  - {fileID: 11400000, guid: 8245ccc18be3a734b869feaad7bcddaf, type: 2}
-  - {fileID: 11400000, guid: c54b454a2e9387a46ab4cdde7534a586, type: 2}
-  - {fileID: 11400000, guid: d155116539316fb42a04b1c91ff9bd9f, type: 2}
+  - {fileID: 11400000, guid: 0a5a1603bb6e0a1479be2ba52bd8fa40, type: 2}
+  - {fileID: 11400000, guid: 0a5a1603bb6e0a1479be2ba52bd8fa40, type: 2}
+  - {fileID: 11400000, guid: 0a5a1603bb6e0a1479be2ba52bd8fa40, type: 2}
+  - {fileID: 11400000, guid: 86cdc74f2500ac941b82f27a1df6d483, type: 2}
+  - {fileID: 11400000, guid: 6b0190e89d044ad4c866723d629ee4b2, type: 2}

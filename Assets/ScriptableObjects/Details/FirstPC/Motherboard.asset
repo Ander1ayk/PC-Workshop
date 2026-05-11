@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d080ea6fb25267648abf92b5086ebfef, type: 3}
+  m_Name: Motherboard
+  m_EditorClassIdentifier: Assembly-CSharp::ItemsData
+  itemId: Motherboard1010
+  itemName: Motherboard
+  description: "The main printed circuit board (PCB) in a computer that acts as the
+    central hub, connecting all components\u2014such as the CPU, RAM, and storage\u2014and
+    allowing them to communicate with each other"
+  itemIcon: {fileID: 21300000, guid: 9897d7ea3fd0921478a1390d9cd67f4f, type: 3}
+  itemPrefab: {fileID: 5753104283591391569, guid: 60b97a52163bbaa43a1e4300da049c75, type: 3}
+  isPCBox: 0

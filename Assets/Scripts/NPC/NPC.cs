@@ -10,6 +10,8 @@ public class NPC : MonoBehaviour, IInteractable
     [SerializeField] private GameObject startPoint;
     [SerializeField] private GameObject endPoint;
 
+    [SerializeField] private AudioClip npcVoice;
+
     private Transform currentTarget;
     private bool isWaiting = false;
     private bool isCompletedQuest = false;
@@ -46,6 +48,7 @@ public class NPC : MonoBehaviour, IInteractable
         if (isWaiting && !questTaken)
         {
             questTaken = true;
+            AudioManager.Instance.PlaySFX(npcVoice, 1f, transform.position);
             // Show quest details or dialogue here
             Debug.Log("Interacting with " + npcData.npcName);
             QuestManager.Instance.StartQuest(npcData.npcQuest);

@@ -1217,6 +1217,7 @@ MonoBehaviour:
   npcAnimator: {fileID: 3852555978924186857}
   startPoint: {fileID: 0}
   endPoint: {fileID: 0}
+  npcVoice: {fileID: 8300000, guid: 24cb65344d9958f48a902140074bfd0c, type: 3}
 --- !u!54 &1188220794777148534
 Rigidbody:
   m_ObjectHideFlags: 0

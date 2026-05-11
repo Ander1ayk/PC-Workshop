@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d080ea6fb25267648abf92b5086ebfef, type: 3}
+  m_Name: PSU
+  m_EditorClassIdentifier: Assembly-CSharp::ItemsData
+  itemId: PSU1014
+  itemName: PSU
+  description: The component that converts high-voltage alternating current (AC)
+    from a wall outlet into low-voltage, stable direct current (DC) necessary for
+    internal components.
+  itemIcon: {fileID: 21300000, guid: 11f968f0b8750b34083b5628488c39c1, type: 3}
+  itemPrefab: {fileID: 7931594366108435208, guid: 552d494a2c0f07e4380020928fdb771e, type: 3}
+  isPCBox: 0
