@@ -35,7 +35,6 @@ public class QuestUI : MonoBehaviour
     private void UpdateQuestProgress(string questId, int progress)
     {
         if (currentQuest == null) return;
-        if (currentQuest.questId != questId) return;
 
         questProgressBar.fillAmount = (float)progress / currentQuest.requiredProgress;
     }

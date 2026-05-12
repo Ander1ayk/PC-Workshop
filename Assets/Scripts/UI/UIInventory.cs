@@ -7,7 +7,7 @@ public class UIInventory : MonoBehaviour
     [SerializeField] private GameObject itemUIPrefab;
     [SerializeField] private GameObject inventoryUI;
     public static UIInventory Instance { get; private set; }
-
+    
     private void Awake()
     {
         Instance = this;

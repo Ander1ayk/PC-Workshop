@@ -9,12 +9,15 @@ public class PlayerInteract : MonoBehaviour
     [SerializeField] private TMPro.TextMeshProUGUI pressToInteract;
     [SerializeField] private GameObject pausePanel;
     private bool isPaused = false;
+
+    private float interactionDistance;
     private void Start()
     {
         if (playerStats == null)
         {
             Debug.LogError("PlayerStats is not assigned in the inspector.");
         }
+        interactionDistance = playerStats.interactionRange;
     }
     private void Update()
     {
@@ -23,42 +26,58 @@ public class PlayerInteract : MonoBehaviour
             TogglePause();
             Debug.Log("Pause have to be");
         }
+        if (Input.GetKey(KeyCode.LeftControl))
+        {
+            interactionDistance = playerStats.interactionRange * 2f;
+        }
+        else
+        {
+            interactionDistance = playerStats.interactionRange;
+        }
         if (playerStats == null)
             return;
         if (PlayerStateController.Instance.CurrentState == PlayerState.ui) return;
 
-        Ray ray = new Ray(cameraTransform.position, cameraTransform.forward);
+        bool canShowInteract = false;
         RaycastHit hit;
 
-        if (!Physics.Raycast(ray, out hit, playerStats.interactionRange, interactableLayer))
-        {
-            pressToInteract.gameObject.SetActive(false);
-            return;
-        }
-
-        bool canShowInteract = false;
         if (PlayerStateController.Instance.CurrentState == PlayerState.moving)
         {
+            Ray ray = new Ray(cameraTransform.position, cameraTransform.forward);
+
+            if (!Physics.Raycast(ray, out hit, interactionDistance, interactableLayer))
+            {
+                pressToInteract.gameObject.SetActive(false);
+                return;
+            }
+
             if (hit.collider.TryGetComponent(out IInteractable interactable))
             {
                 canShowInteract = true;
+
                 if (Input.GetKeyDown(KeyCode.E))
                 {
                     interactable.Interact();
-                    Debug.Log("Interacted with: " + hit.collider.name);
                 }
             }
         }
         else if (PlayerStateController.Instance.CurrentState == PlayerState.assembling)
         {
+            Ray mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+            if (!Physics.Raycast(mouseRay, out hit, interactionDistance, interactableLayer))
+            {
+                pressToInteract.gameObject.SetActive(false);
+                return;
+            }
 
             if (hit.collider.TryGetComponent(out IPCInteractable pcInteractable))
             {
                 canShowInteract = true;
+
                 if (Input.GetKeyDown(KeyCode.E))
                 {
                     pcInteractable.InteractWithPC();
-                    Debug.Log("Interacted with: " + hit.collider.name);
                 }
             }
         }
@@ -69,7 +88,7 @@ public class PlayerInteract : MonoBehaviour
         if (cameraTransform == null)
             return;
         Gizmos.color = Color.green;
-        Gizmos.DrawRay(cameraTransform.position, cameraTransform.forward * playerStats.interactionRange);
+        Gizmos.DrawRay(cameraTransform.position, cameraTransform.forward * interactionDistance);
     }
     private void TogglePause()
     {

@@ -12,12 +12,17 @@ public class PCAssemblyManager : MonoBehaviour
     }
     private void Update()
     {
+        if (PlayerStateController.Instance.CurrentState != PlayerState.ui)
+            return;
         if (Input.GetMouseButtonDown(1))
         {
             currentSlot = null;
             UIInventory.Instance.Hide();
 
-            PlayerStateController.Instance.SetState(PlayerState.assembling);
+            if (PCRotate.CurrentPC != null)
+            {
+                PCRotate.CurrentPC.ExitAssembly();
+            }
         }
     }
     public void StartPlacing(PCSlot slot)
@@ -41,6 +46,6 @@ public class PCAssemblyManager : MonoBehaviour
 
         UIInventory.Instance.Hide();
         PlayerStateController.Instance.SetState(PlayerState.assembling);
-        Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.lockState = CursorLockMode.Locked;
     }
 }

@@ -8,6 +8,7 @@ public class PCRotate : MonoBehaviour, IInteractable
     public GameObject[] detailsPC;
     public GameObject[] pcPanels;
     [SerializeField] private AudioClip completedSound;
+    [SerializeField] private Collider collider;
     private float xRotation = 0f;
     private float yRotation = 0f;
 
@@ -20,6 +21,7 @@ public class PCRotate : MonoBehaviour, IInteractable
 
     private int installedCount;
     private int totalCount;
+    public static PCRotate CurrentPC;
     private void Awake()
     {
         totalCount = detailsPC.Length;
@@ -30,14 +32,32 @@ public class PCRotate : MonoBehaviour, IInteractable
         {
             Debug.LogError("PlayerStats is not assigned in the inspector.");
         }
+
         startedPosition = transform.position;
         startRotation = transform.rotation;
     }
     public void Interact()
     {
+        CurrentPC = this;
         PlayerStateController.Instance.SetState(PlayerState.assembling);
 
-        Cursor.lockState = CursorLockMode.Locked;
+        if (collider != null)
+        {
+            collider.enabled = false;
+        }
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
+        Camera cam = Camera.main;
+
+        transform.position = cam.transform.position
+                           + cam.transform.forward * 5f
+                           + cam.transform.right * 0.3f
+                           - cam.transform.up * 1.5f;
+
+        transform.rotation = Quaternion.LookRotation(-cam.transform.forward);
+
         foreach (var detail in detailsPC)
         {
             MeshRenderer meshRenderer = detail.GetComponent<MeshRenderer>();
@@ -69,11 +89,17 @@ public class PCRotate : MonoBehaviour, IInteractable
         {
             ExitAssembly();
         }
-        MovingMouse();
     }
-    private void ExitAssembly()
+    public void ExitAssembly()
     {
+        CurrentPC = null;
         PlayerStateController.Instance.SetState(PlayerState.moving);
+
+        if(collider != null)
+        {
+            collider.enabled = true;
+            Debug.Log("Collider enabled");
+        }
 
         transform.position = startedPosition;
         transform.rotation = startRotation;
@@ -96,14 +122,6 @@ public class PCRotate : MonoBehaviour, IInteractable
         {
             panel.SetActive(true);
         }
-    }
-    private void MovingMouse()
-    {
-        float mouseX = Input.GetAxis("Mouse X") * playerStats.mouseSensitivity;
-        float mouseY = Input.GetAxis("Mouse Y") * playerStats.mouseSensitivity;
-
-        transform.Rotate(Vector3.up, mouseX, Space.World);
-        transform.Rotate(Vector3.right, -mouseY, Space.World);
     }
    
     private IEnumerator DestroyPCAfterDelay()
