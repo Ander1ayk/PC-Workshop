@@ -182,7 +182,7 @@ MonoBehaviour:
   pcPanels:
   - {fileID: 2146191294652202259}
   completedSound: {fileID: 8300000, guid: 39b56d506db5e5148b97b0a1877f833c, type: 3}
-  collider: {fileID: 4463891258991932386}
+  "\u0441ollider": {fileID: 4463891258991932386}
 --- !u!1 &2146191294652202259
 GameObject:
   m_ObjectHideFlags: 0

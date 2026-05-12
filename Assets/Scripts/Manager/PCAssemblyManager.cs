@@ -12,7 +12,8 @@ public class PCAssemblyManager : MonoBehaviour
     }
     private void Update()
     {
-        if (PlayerStateController.Instance.CurrentState != PlayerState.ui)
+        if (PlayerStateController.Instance.CurrentState != PlayerState.ui &&
+        PlayerStateController.Instance.CurrentState != PlayerState.assembling)
             return;
         if (Input.GetMouseButtonDown(1))
         {

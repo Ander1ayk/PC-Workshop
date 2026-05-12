@@ -8,7 +8,7 @@ public class PCRotate : MonoBehaviour, IInteractable
     public GameObject[] detailsPC;
     public GameObject[] pcPanels;
     [SerializeField] private AudioClip completedSound;
-    [SerializeField] private Collider collider;
+    [SerializeField] private Collider ñollider;
     private float xRotation = 0f;
     private float yRotation = 0f;
 
@@ -41,13 +41,10 @@ public class PCRotate : MonoBehaviour, IInteractable
         CurrentPC = this;
         PlayerStateController.Instance.SetState(PlayerState.assembling);
 
-        if (collider != null)
+        if (ñollider != null)
         {
-            collider.enabled = false;
+            ñollider.enabled = false;
         }
-
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
 
         Camera cam = Camera.main;
 
@@ -85,19 +82,16 @@ public class PCRotate : MonoBehaviour, IInteractable
             return;
         if (PlayerStateController.Instance.CurrentState != PlayerState.assembling)
             return;
-        if (Input.GetMouseButtonDown(1))
-        {
-            ExitAssembly();
-        }
     }
     public void ExitAssembly()
     {
+        if (CurrentPC != this) return;
         CurrentPC = null;
         PlayerStateController.Instance.SetState(PlayerState.moving);
 
-        if(collider != null)
+        if(ñollider != null)
         {
-            collider.enabled = true;
+            ñollider.enabled = true;
             Debug.Log("Collider enabled");
         }
 

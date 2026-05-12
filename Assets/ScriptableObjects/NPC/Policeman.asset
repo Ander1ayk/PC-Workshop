@@ -15,4 +15,4 @@ MonoBehaviour:
   npcName: Police
   npcLevel: 4
   npcSpeed: 5
-  npcQuest: {fileID: 11400000, guid: 2a1c32de23718b1438370f255747b2e2, type: 2}
+  npcQuest: {fileID: 11400000, guid: 60085b944b5eba1478d576eed66c6cf4, type: 2}

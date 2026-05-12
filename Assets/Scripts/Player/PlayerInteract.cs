@@ -64,13 +64,13 @@ public class PlayerInteract : MonoBehaviour
         else if (PlayerStateController.Instance.CurrentState == PlayerState.assembling)
         {
             Ray mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-
+            
             if (!Physics.Raycast(mouseRay, out hit, interactionDistance, interactableLayer))
             {
                 pressToInteract.gameObject.SetActive(false);
                 return;
             }
-
+            Debug.Log("Hit: " + hit.collider.name);
             if (hit.collider.TryGetComponent(out IPCInteractable pcInteractable))
             {
                 canShowInteract = true;
