@@ -15,7 +15,7 @@ public class Door : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("NPC"))
+        if (other.CompareTag("Player"))
         {
             doorAnimator.SetTrigger("IsOpen");
             AudioManager.Instance.PlaySFX(doorSound, 1f, doorPrefab.transform.position);
@@ -23,7 +23,7 @@ public class Door : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("NPC"))
+        if (other.CompareTag("Player"))
         {
             doorAnimator.SetTrigger("IsClose");
             AudioManager.Instance.PlaySFX(doorSound, 1f, doorPrefab.transform.position);

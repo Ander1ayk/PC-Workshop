@@ -3133,7 +3133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 299a7a468ef8eca449099469b9b66a5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AudioManager
-  sfxMixerGroup: {fileID: 0}
+  sfxMixerGroup: {fileID: 8511883854178318463, guid: 022ef91a15c554a4bbdb4396095131ce, type: 2}
 --- !u!4 &1593011377
 Transform:
   m_ObjectHideFlags: 0

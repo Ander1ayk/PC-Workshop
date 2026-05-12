@@ -10,15 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ef9c2c243f020214bac0d3de3d40848f, type: 3}
-  m_Name: FirstQuest
+  m_Name: FifthQuest
   m_EditorClassIdentifier: Assembly-CSharp::QuestData
-  questId: FirstQuest1010
-  questName: Snejana`s quest
-  questDescription: You need to install 2 fans, PSU, Video card.
+  questId: FifthQuest10110
+  questName: Five
+  questDescription: You need to install 3 fans, PSU, Video card, motherboard RAM
+    and CPU.
   currentProgress: 0
-  requiredProgress: 4
+  requiredProgress: 8
   requiredItems:
   - {fileID: 11400000, guid: 0a5a1603bb6e0a1479be2ba52bd8fa40, type: 2}
   - {fileID: 11400000, guid: 0a5a1603bb6e0a1479be2ba52bd8fa40, type: 2}
   - {fileID: 11400000, guid: 86cdc74f2500ac941b82f27a1df6d483, type: 2}
   - {fileID: 11400000, guid: 6b0190e89d044ad4c866723d629ee4b2, type: 2}
+  - {fileID: 11400000, guid: e7b342409200299449e1a224d2d5b66b, type: 2}
+  - {fileID: 11400000, guid: 4c15564fa4f70f9448acf4acfb4e9000, type: 2}
+  - {fileID: 11400000, guid: 88d33bc3d2ac71d4a8f362e296a75e42, type: 2}
+  - {fileID: 11400000, guid: 0a5a1603bb6e0a1479be2ba52bd8fa40, type: 2}

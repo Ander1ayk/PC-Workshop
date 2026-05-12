@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d080ea6fb25267648abf92b5086ebfef, type: 3}
+  m_Name: Third_PC
+  m_EditorClassIdentifier: Assembly-CSharp::ItemsData
+  itemId: ThirdPC1012
+  itemName: Third
+  description: For the third quest.
+  itemIcon: {fileID: 21300000, guid: 4188f19e55c9165499e7ed4de61a3127, type: 3}
+  itemPrefab: {fileID: 1378037156523704670, guid: 92ebe1f5069b4fc47be5a4d6b7c228cb, type: 3}
+  isPCBox: 1

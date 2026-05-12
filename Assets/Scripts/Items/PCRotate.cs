@@ -108,7 +108,7 @@ public class PCRotate : MonoBehaviour, IInteractable
    
     private IEnumerator DestroyPCAfterDelay()
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(1f);
 
         PlayerStateController.Instance.SetState(PlayerState.moving);
         AudioManager.Instance.PlaySFX(completedSound, 1f);

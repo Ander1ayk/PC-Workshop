@@ -8,6 +8,7 @@ public class PlayerInteract : MonoBehaviour
     [SerializeField] private LayerMask interactableLayer;
     [SerializeField] private TMPro.TextMeshProUGUI pressToInteract;
     [SerializeField] private GameObject pausePanel;
+    private bool isPaused = false;
     private void Start()
     {
         if (playerStats == null)
@@ -17,11 +18,11 @@ public class PlayerInteract : MonoBehaviour
     }
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.T) && PlayerStateController.Instance.GetCurrentState() == PlayerState.moving)
+        if (Input.GetKeyDown(KeyCode.T))
         {
             TogglePause();
+            Debug.Log("Pause have to be");
         }
-
         if (playerStats == null)
             return;
         if (PlayerStateController.Instance.CurrentState == PlayerState.ui) return;
@@ -72,8 +73,20 @@ public class PlayerInteract : MonoBehaviour
     }
     private void TogglePause()
     {
-        pausePanel.SetActive(!pausePanel);
-        Time.timeScale = pausePanel.activeSelf ? 0 : 1;
-        Cursor.lockState = pausePanel.activeSelf ? CursorLockMode.None : CursorLockMode.Locked;
+        isPaused = !isPaused;
+
+        pausePanel.SetActive(isPaused);
+
+        PlayerStateController.Instance.SetState(
+            isPaused ? PlayerState.pause : PlayerState.moving
+        );
+
+        Time.timeScale = isPaused ? 0f : 1f;
+
+        Cursor.lockState = isPaused
+            ? CursorLockMode.None
+            : CursorLockMode.Locked;
+
+        Cursor.visible = isPaused;
     }
 }

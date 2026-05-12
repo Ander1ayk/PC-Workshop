@@ -15,4 +15,4 @@ MonoBehaviour:
   npcName: Little boy
   npcLevel: 3
   npcSpeed: 5
-  npcQuest: {fileID: 11400000, guid: 2a1c32de23718b1438370f255747b2e2, type: 2}
+  npcQuest: {fileID: 11400000, guid: 2d495f3e8ca181847bff594786fadd75, type: 2}
