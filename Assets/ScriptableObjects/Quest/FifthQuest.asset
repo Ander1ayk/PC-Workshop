@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: FifthQuest
   m_EditorClassIdentifier: Assembly-CSharp::QuestData
   questId: FifthQuest10110
-  questName: Five
+  questName: A man needs a man's computer
   questDescription: You need to install 3 fans, PSU, Video card, motherboard RAM
     and CPU.
   currentProgress: 0
