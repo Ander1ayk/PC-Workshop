@@ -18,6 +18,8 @@ public class PlayerInteract : MonoBehaviour
             Debug.LogError("PlayerStats is not assigned in the inspector.");
         }
         interactionDistance = playerStats.interactionRange;
+        isPaused = false;
+        PlayerStateController.Instance.SetState(PlayerState.moving);
     }
     private void Update()
     {
