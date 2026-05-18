@@ -68,7 +68,7 @@ public class NPC : MonoBehaviour, IInteractable
             isWaiting = true;
             npcAnimator.SetTrigger("IsWaiting");
         }
-        if ((Vector3.Distance(transform.position, startPoint.transform.position) < 0.1f) && isCompletedQuest)
+        if (isCompletedQuest)
         {
             manager.NPCFinished();
             Destroy(gameObject);
