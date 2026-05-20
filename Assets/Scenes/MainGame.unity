@@ -3481,8 +3481,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 11.337848, y: 1, z: 13.1156025}
-  m_Center: {x: -0.79096174, y: 0, z: -1.0570545}
+  m_Size: {x: 11.337848, y: 6.509095, z: 13.1156025}
+  m_Center: {x: -0.79096174, y: 2.7545476, z: -1.0570545}
 --- !u!1 &1043865076
 GameObject:
   m_ObjectHideFlags: 0
@@ -3713,7 +3713,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1149746424}
   m_Direction: 0
   m_MinValue: 0.1
-  m_MaxValue: 10
+  m_MaxValue: 4
   m_WholeNumbers: 0
   m_Value: 2
   m_OnValueChanged:
@@ -4413,6 +4413,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   playerStats: {fileID: 11400000, guid: afefc3775ae14f64a9a98e9c3cef8425, type: 2}
   cameraTransform: {fileID: 330585546}
+  gravity: -9.81
+  groundedForce: -2
 --- !u!4 &1222638827
 Transform:
   m_ObjectHideFlags: 0

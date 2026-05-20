@@ -13,6 +13,10 @@ public class PlayerMovement : MonoBehaviour
 
     private float currentSensitivity;
 
+    [SerializeField] private float gravity = -9.81f;
+    [SerializeField] private float groundedForce = -2f;
+
+    private float verticalVelocity;
     private void Start()
     {
         if (playerStats == null)
@@ -52,9 +56,18 @@ public class PlayerMovement : MonoBehaviour
         verticalInput = Input.GetAxis("Vertical");
 
         Vector3 moveDirection = transform.forward * verticalInput + transform.right * horizontalInput;
-        moveDirection *= playerStats.speed * Time.deltaTime;
+        moveDirection *= playerStats.speed;
 
-        characterController.Move(moveDirection);
+        if (characterController.isGrounded && verticalVelocity < 0)
+        {
+            verticalVelocity = groundedForce;
+        }
+
+        verticalVelocity += gravity * Time.deltaTime;
+
+        moveDirection.y = verticalVelocity;
+
+        characterController.Move(moveDirection * Time.deltaTime);
     }
     private void MovingMouse()
     {
