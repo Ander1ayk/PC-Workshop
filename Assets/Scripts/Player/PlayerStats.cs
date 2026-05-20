@@ -7,5 +7,5 @@ public class PlayerStats : ScriptableObject
     public float interactionRange;
     [Header("Mouse sensitivity")]
     [Range(0.1f, 10f)]
-    public float mouseSensitivity;
+    public float mouseSensitivity = 2f;
 }

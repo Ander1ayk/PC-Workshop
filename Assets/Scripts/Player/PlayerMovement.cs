@@ -11,11 +11,21 @@ public class PlayerMovement : MonoBehaviour
 
     private float xRotation = 0f;
 
+    private float currentSensitivity;
+
     private void Start()
     {
         if (playerStats == null)
         {
             Debug.LogError("PlayerStats is not assigned in the inspector.");
+        }
+        if (PlayerPrefs.HasKey("MouseSensitivity"))
+        {
+            currentSensitivity = PlayerPrefs.GetFloat("MouseSensitivity");
+        }
+        else
+        {
+            currentSensitivity = playerStats.mouseSensitivity;
         }
         characterController = GetComponent<CharacterController>();
         if (characterController == null)
@@ -48,8 +58,8 @@ public class PlayerMovement : MonoBehaviour
     }
     private void MovingMouse()
     {
-        float mouseX = Input.GetAxis("Mouse X") * playerStats.mouseSensitivity;
-        float mouseY = Input.GetAxis("Mouse Y") * playerStats.mouseSensitivity;
+        float mouseX = Input.GetAxis("Mouse X") * currentSensitivity;
+        float mouseY = Input.GetAxis("Mouse Y") * currentSensitivity;
 
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
@@ -61,11 +71,13 @@ public class PlayerMovement : MonoBehaviour
     private void OnEnable()
     {
         GameEvents.OnPlayerStateChanged += HandleState;
+        GameEvents.OnMouseSensitivityChanged += UpdateSensitivity;
     }
 
     private void OnDisable()
     {
         GameEvents.OnPlayerStateChanged -= HandleState;
+        GameEvents.OnMouseSensitivityChanged -= UpdateSensitivity;
     }
 
     private void HandleState(PlayerState state)
@@ -80,5 +92,9 @@ public class PlayerMovement : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
+    }
+    private void UpdateSensitivity(float value)
+    {
+        currentSensitivity = value;
     }
 }

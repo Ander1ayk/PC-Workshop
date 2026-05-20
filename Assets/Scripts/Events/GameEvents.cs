@@ -67,4 +67,11 @@ public static class GameEvents
     {
         OnGameCompleted?.Invoke();
     }
+    // Mouse Sensitivity
+    public static event Action<float> OnMouseSensitivityChanged;
+
+    public static void MouseSensitivityChanged(float value)
+    {
+        OnMouseSensitivityChanged?.Invoke(value);
+    }
 }
