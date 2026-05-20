@@ -5,6 +5,8 @@ public class Door : MonoBehaviour
     [SerializeField] private Animator doorAnimator;
     [SerializeField] private GameObject doorPrefab;
     [SerializeField] private AudioClip doorSound;
+    [Header("Allowed Tag")]
+    [SerializeField] private string allowedTag = "Player";
 
     private void Start()
     {
@@ -15,7 +17,7 @@ public class Door : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag(allowedTag))
         {
             doorAnimator.SetTrigger("IsOpen");
             AudioManager.Instance.PlaySFX(doorSound, 1f, doorPrefab.transform.position);
@@ -23,7 +25,7 @@ public class Door : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag(allowedTag))
         {
             doorAnimator.SetTrigger("IsClose");
             AudioManager.Instance.PlaySFX(doorSound, 1f, doorPrefab.transform.position);
