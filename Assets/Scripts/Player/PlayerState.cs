@@ -5,5 +5,6 @@ public enum PlayerState
     talking,
     assembling, 
     placingPC,
-    pause
+    pause,
+    guide
 }

@@ -12,6 +12,8 @@ public class PCShop : MonoBehaviour, IInteractable
     {
         if (Input.GetMouseButtonDown(1))
         {
+            if(PlayerStateController.Instance.CurrentState != PlayerState.ui)
+                return;
             PlayerStateController.Instance.SetState(PlayerState.assembling);
             CloseShop();
         }

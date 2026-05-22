@@ -47,6 +47,5 @@ public class PCAssemblyManager : MonoBehaviour
 
         UIInventory.Instance.Hide();
         PlayerStateController.Instance.SetState(PlayerState.assembling);
-        //Cursor.lockState = CursorLockMode.Locked;
     }
 }

@@ -8,7 +8,9 @@ public class PlayerInteract : MonoBehaviour
     [SerializeField] private LayerMask interactableLayer;
     [SerializeField] private TMPro.TextMeshProUGUI pressToInteract;
     [SerializeField] private GameObject pausePanel;
+    [SerializeField] private GameObject guidePanel;
     private bool isPaused = false;
+    private bool isGuideOpen = false;
 
     private float interactionDistance;
     private void Start()
@@ -19,6 +21,7 @@ public class PlayerInteract : MonoBehaviour
         }
         interactionDistance = playerStats.interactionRange;
         isPaused = false;
+        isGuideOpen = false;
         PlayerStateController.Instance.SetState(PlayerState.moving);
     }
     private void Update()
@@ -27,6 +30,11 @@ public class PlayerInteract : MonoBehaviour
         {
             TogglePause();
             Debug.Log("Pause have to be");
+        }
+        if(Input.GetKeyDown(KeyCode.H))
+        {
+            ToggleGuide();
+            Debug.Log("Guide have to be");
         }
         if (Input.GetKey(KeyCode.LeftControl))
         {
@@ -109,5 +117,14 @@ public class PlayerInteract : MonoBehaviour
             : CursorLockMode.Locked;
 
         Cursor.visible = isPaused;
+    }
+    private void ToggleGuide()
+    {
+        isGuideOpen = !isGuideOpen;
+
+        guidePanel.SetActive(isGuideOpen);
+        PlayerStateController.Instance.SetState(
+            isGuideOpen ? PlayerState.guide : PlayerState.moving
+        );
     }
 }
