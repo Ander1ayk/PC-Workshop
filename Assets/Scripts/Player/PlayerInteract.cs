@@ -46,6 +46,11 @@ public class PlayerInteract : MonoBehaviour
             ToggleGuide();
             Debug.Log("Guide have to be");
         }
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            ToggleInventory();
+            Debug.Log("Inventory have to be");
+        }
         if (Input.GetKey(KeyCode.LeftControl))
         {
             interactionDistance = playerStats.interactionRange * 2f;
@@ -170,5 +175,22 @@ public class PlayerInteract : MonoBehaviour
 
         showCollectedItems.SetActive(false);
         showCollectedRoutine = null;
+    }
+    private void ToggleInventory()
+    {
+        if(PlayerStateController.Instance.CurrentState == PlayerState.assembling)
+        {
+            return;
+        }
+        if (PlayerStateController.Instance.CurrentState == PlayerState.ui)
+        {
+            PlayerStateController.Instance.SetState(PlayerState.moving);
+            UIInventory.Instance.Hide();
+        }
+        else
+        {
+            PlayerStateController.Instance.SetState(PlayerState.ui);
+            UIInventory.Instance.Show();
+        }
     }
 }

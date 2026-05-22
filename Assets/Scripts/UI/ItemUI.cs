@@ -15,7 +15,8 @@ public class ItemUI : MonoBehaviour
     }
     private void UseItem(ItemsData itemData)
     {
-        PCAssemblyManager.Instance.TryPlaceItem(itemData);
+        if(PlayerStateController.Instance.CurrentState == PlayerState.assembling)
+            PCAssemblyManager.Instance.TryPlaceItem(itemData);
     }
     public void SetupPCBox(ItemsData itemData, PCPlacementManager manager)
     {
