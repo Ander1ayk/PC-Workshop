@@ -3,25 +3,12 @@ using UnityEngine;
 
 public class ShopManager : MonoBehaviour
 {
-    public static ShopManager Instance { get; private set; }
     [Header("Info")]
     [SerializeField] private Transform storeDelivery;
     [SerializeField] private GameObject[] boxForDelivery;
     private List<ItemsData> boughtItems;
     [SerializeField] private AudioClip buySound;
     [SerializeField] private AudioClip deliverSound;
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
     public void BuyItem(ItemsData item)
     {
         if (boughtItems == null)

@@ -14,6 +14,6 @@ public class ShopSlotUI : MonoBehaviour
         shopSlotPrefab.image.sprite = itemData.itemIcon;
 
         shopSlotPrefab.onClick.RemoveAllListeners();
-        shopSlotPrefab.onClick.AddListener(() => ShopManager.Instance.BuyItem(itemData));
+        shopSlotPrefab.onClick.AddListener(() => FindAnyObjectByType<ShopManager>().BuyItem(itemData));
     }
 }
