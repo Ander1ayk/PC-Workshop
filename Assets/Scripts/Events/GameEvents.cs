@@ -74,4 +74,10 @@ public static class GameEvents
     {
         OnMouseSensitivityChanged?.Invoke(value);
     }
+    // Items collected from delivery box
+    public static event Action<ItemsData> OnItemCollectedFromBox;
+    public static void ItemCollectedFromBox(ItemsData item)
+    {
+        OnItemCollectedFromBox?.Invoke(item);
+    }
 }

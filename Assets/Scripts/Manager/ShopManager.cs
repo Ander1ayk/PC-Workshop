@@ -22,10 +22,15 @@ public class ShopManager : MonoBehaviour
             return;
         foreach (var item in boughtItems)
         {
+            StartCoroutine(CoolDownDelivery());
             GameObject box = Instantiate(boxForDelivery[Random.Range(0, boxForDelivery.Length)], storeDelivery.position, Quaternion.identity);
             box.GetComponent<BoxForDelivery>().Setup(item);
         }
         boughtItems.Clear();
         AudioManager.Instance.PlaySFX(deliverSound, 1f);
+    }
+    private System.Collections.IEnumerator CoolDownDelivery()
+    {
+        yield return new WaitForSeconds(1f);
     }
 }

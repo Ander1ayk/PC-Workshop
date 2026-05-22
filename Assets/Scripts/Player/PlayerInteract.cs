@@ -1,4 +1,6 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerInteract : MonoBehaviour
 {
@@ -9,16 +11,24 @@ public class PlayerInteract : MonoBehaviour
     [SerializeField] private TMPro.TextMeshProUGUI pressToInteract;
     [SerializeField] private GameObject pausePanel;
     [SerializeField] private GameObject guidePanel;
+    [Header("Show Collected Items")]
+    [SerializeField] private GameObject showCollectedItems;
+    [SerializeField] private TMPro.TextMeshProUGUI collectedItemsText;
+    [SerializeField] private Image collectedItemsImage;
     private bool isPaused = false;
     private bool isGuideOpen = false;
 
     private float interactionDistance;
+    private Coroutine showCollectedRoutine;
     private void Start()
     {
         if (playerStats == null)
         {
             Debug.LogError("PlayerStats is not assigned in the inspector.");
         }
+        if (showCollectedItems == null) return;
+        showCollectedItems.SetActive(false);
+        
         interactionDistance = playerStats.interactionRange;
         isPaused = false;
         isGuideOpen = false;
@@ -126,5 +136,39 @@ public class PlayerInteract : MonoBehaviour
         PlayerStateController.Instance.SetState(
             isGuideOpen ? PlayerState.guide : PlayerState.moving
         );
+    }
+    private void OnEnable()
+    {
+        GameEvents.OnItemCollectedFromBox += ShowCollectedItem;
+    }
+    private void OnDisable()
+    {
+        GameEvents.OnItemCollectedFromBox -= ShowCollectedItem;
+    }
+    private void ShowCollectedItem(ItemsData items)
+    {
+        if(showCollectedItems == null || collectedItemsText == null || collectedItemsImage == null)
+        {
+            Debug.LogError("UI elements for showing collected items are not assigned.");
+            return;
+        }
+        collectedItemsText.text = items.itemName; 
+        collectedItemsImage.sprite = items.itemIcon;
+
+        if(showCollectedRoutine != null)
+        {
+            StopCoroutine(showCollectedRoutine);
+        }
+
+        showCollectedRoutine = StartCoroutine(ShowCollectedItemsTemporarily());
+    }
+    private IEnumerator ShowCollectedItemsTemporarily()
+    {
+        showCollectedItems.SetActive(true);
+
+        yield return new WaitForSeconds(2f);
+
+        showCollectedItems.SetActive(false);
+        showCollectedRoutine = null;
     }
 }
