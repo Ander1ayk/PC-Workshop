@@ -6,5 +6,6 @@ public enum PlayerState
     assembling, 
     placingPC,
     pause,
-    guide
+    guide,
+    lookInventory
 }

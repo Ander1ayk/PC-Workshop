@@ -182,14 +182,14 @@ public class PlayerInteract : MonoBehaviour
         {
             return;
         }
-        if (PlayerStateController.Instance.CurrentState == PlayerState.ui)
+        if (PlayerStateController.Instance.CurrentState == PlayerState.lookInventory)
         {
             PlayerStateController.Instance.SetState(PlayerState.moving);
             UIInventory.Instance.Hide();
         }
         else
         {
-            PlayerStateController.Instance.SetState(PlayerState.ui);
+            PlayerStateController.Instance.SetState(PlayerState.lookInventory);
             UIInventory.Instance.Show();
         }
     }

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SecondQuest
   m_EditorClassIdentifier: Assembly-CSharp::QuestData
   questId: SecondQuest1011
-  questName: Babka need PC
+  questName: Grandma need a PC
   questDescription: You need to install 2 fans, PSU, Video card, motherboard.
   currentProgress: 0
   requiredProgress: 5

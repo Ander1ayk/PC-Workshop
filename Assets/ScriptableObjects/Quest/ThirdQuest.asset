@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ThirdQuest
   m_EditorClassIdentifier: Assembly-CSharp::QuestData
   questId: ThirdQuest1011
-  questName: Little boy want PC
+  questName: Denis want a PC
   questDescription: You need to install 2 fans, PSU, Video card, motherboard and
     RAM.
   currentProgress: 0

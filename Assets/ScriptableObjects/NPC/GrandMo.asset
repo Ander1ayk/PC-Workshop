@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec3d1023dd432e64eac54ee27dd7483c, type: 3}
   m_Name: GrandMo
   m_EditorClassIdentifier: Assembly-CSharp::NPCData
-  npcName: Babka
+  npcName: Grandma
   npcLevel: 2
   npcSpeed: 3
   npcQuest: {fileID: 11400000, guid: cd2b2b5f45f75d44e89edfbcac336949, type: 2}

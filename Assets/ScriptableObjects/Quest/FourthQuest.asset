@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: FourthQuest
   m_EditorClassIdentifier: Assembly-CSharp::QuestData
   questId: FourthQuest2020
-  questName: The police need your skills.
+  questName: The police officer needs your skills
   questDescription: You need to install 2 fans, PSU, Video card, motherboard RAM
     and CPU.
   currentProgress: 0

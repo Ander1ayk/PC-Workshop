@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: FirstQuest
   m_EditorClassIdentifier: Assembly-CSharp::QuestData
   questId: FirstQuest1010
-  questName: Snejana`s quest
+  questName: Snejana need a PC
   questDescription: You need to install 2 fans, PSU, Video card.
-  currentProgress: 0
+  currentProgress: 4
   requiredProgress: 4
   requiredItems:
   - {fileID: 11400000, guid: 0a5a1603bb6e0a1479be2ba52bd8fa40, type: 2}
