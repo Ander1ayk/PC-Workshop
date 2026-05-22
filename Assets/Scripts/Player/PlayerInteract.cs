@@ -36,7 +36,7 @@ public class PlayerInteract : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.T))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             TogglePause();
             Debug.Log("Pause have to be");
@@ -115,7 +115,7 @@ public class PlayerInteract : MonoBehaviour
         Gizmos.color = Color.green;
         Gizmos.DrawRay(cameraTransform.position, cameraTransform.forward * interactionDistance);
     }
-    private void TogglePause()
+    public void TogglePause()
     {
         isPaused = !isPaused;
 
