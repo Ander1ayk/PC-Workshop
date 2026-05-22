@@ -20,17 +20,25 @@ public class ShopManager : MonoBehaviour
     {
         if (boughtItems == null || boughtItems.Count == 0)
             return;
+        StartCoroutine(DeliverItemsRoutine());
+    }
+    private System.Collections.IEnumerator DeliverItemsRoutine()
+    {
+        AudioManager.Instance.PlaySFX(deliverSound, 1f);
         foreach (var item in boughtItems)
         {
-            StartCoroutine(CoolDownDelivery());
-            GameObject box = Instantiate(boxForDelivery[Random.Range(0, boxForDelivery.Length)], storeDelivery.position, Quaternion.identity);
+            Vector3 randomOffset = new Vector3(
+            Random.Range(-0.3f, 0.3f),
+            0f,
+            Random.Range(-0.3f, 0.3f)
+        );
+            Vector3 spawnPosition = storeDelivery.position + randomOffset;
+
+            GameObject box = Instantiate(boxForDelivery[Random.Range(0, boxForDelivery.Length)], spawnPosition, Quaternion.identity);
             box.GetComponent<BoxForDelivery>().Setup(item);
+            yield return new WaitForSeconds(1f);
         }
         boughtItems.Clear();
-        AudioManager.Instance.PlaySFX(deliverSound, 1f);
     }
-    private System.Collections.IEnumerator CoolDownDelivery()
-    {
-        yield return new WaitForSeconds(1f);
-    }
+
 }
