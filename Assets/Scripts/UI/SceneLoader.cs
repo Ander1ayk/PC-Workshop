@@ -29,11 +29,19 @@ public class SceneLoader : MonoBehaviour
     {
         Time.timeScale = 1f;
         SaveSystem.Instance.DeleteSaveData();
+        SaveSystem.Instance.ResetGameCompleted();
         loadSaveAfterScene = false;
         StartCoroutine(LoadSceneAsync(sceneName));
     }
     public void ContinueGame(string sceneName)
     {
+        if (!SaveSystem.Instance.HasSaveData())
+            return;
+        if (SaveSystem.Instance.IsGameCompleted())
+        {
+            Debug.Log("Game completed. Continue disabled.");
+            return;
+        }
         Time.timeScale = 1f;
         loadSaveAfterScene = true;
         StartCoroutine(LoadSceneAsync(sceneName));

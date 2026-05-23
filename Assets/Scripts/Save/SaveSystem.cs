@@ -5,7 +5,7 @@ public class SaveSystem : MonoBehaviour
 {
     public static SaveSystem Instance { get; private set; }
     private string saveFilePath;
-
+    private bool isGameCompleted;
     private void Awake()
     {
         if (Instance == null)
@@ -30,6 +30,8 @@ public class SaveSystem : MonoBehaviour
             saveData.playerPosition = player.transform.position;
             saveData.playerRotation = player.transform.eulerAngles;
         }
+        saveData.inventorySlots = Inventory.Instance.slots;
+        saveData.isGameCompleted = isGameCompleted;
         string json = JsonUtility.ToJson(saveData);
         saveFilePath = Path.Combine(Application.persistentDataPath, "savefile.json");
         File.WriteAllText(saveFilePath, json);
@@ -45,7 +47,8 @@ public class SaveSystem : MonoBehaviour
         SaveData saveData = JsonUtility.FromJson<SaveData>(json);
 
         NPCManager.Instance.SetLevel(saveData.currentLevel);
-
+        Inventory.Instance.SetInventoryFromSave(saveData.inventorySlots);
+        isGameCompleted = saveData.isGameCompleted;
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if(player != null)
         {
@@ -68,5 +71,34 @@ public class SaveSystem : MonoBehaviour
     public bool HasSaveData()
     {
         return File.Exists(saveFilePath);
+    }
+    private void OnEnable()
+    {
+        GameEvents.OnGameCompleted += MarkGameCompleted;
+    }
+
+    private void OnDisable()
+    {
+        GameEvents.OnGameCompleted -= MarkGameCompleted;
+    }
+
+    private void MarkGameCompleted()
+    {
+        isGameCompleted = true;
+        SaveGame();
+    }
+    public bool IsGameCompleted()
+    {
+        if (!File.Exists(saveFilePath))
+            return false;
+
+        string json = File.ReadAllText(saveFilePath);
+        SaveData saveData = JsonUtility.FromJson<SaveData>(json);
+
+        return saveData.isGameCompleted;
+    }
+    public void ResetGameCompleted()
+    {
+        isGameCompleted = false;
     }
 }

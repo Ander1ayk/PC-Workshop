@@ -80,4 +80,10 @@ public static class GameEvents
     {
         OnItemCollectedFromBox?.Invoke(item);
     }
+    // Auto-Saves
+    public static event Action OnAutoSaveRequested;
+    public static void AutoSaveRequested()
+    {
+        OnAutoSaveRequested?.Invoke();
+    }
 }

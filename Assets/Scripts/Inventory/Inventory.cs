@@ -60,6 +60,16 @@ public class Inventory : MonoBehaviour
         }
         return false;
     }
+    public List<InventorySlot> GetInventory()
+    {
+        return slots;
+    }
+    public void SetInventoryFromSave(List<InventorySlot> savedInventory)
+    {
+        slots.Clear();
+        slots = savedInventory;
+        GameEvents.InventoryChanged();
+    }
     private void OnEnable()
     {
         GameEvents.OnItemAdded += AddItems;

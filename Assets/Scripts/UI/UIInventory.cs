@@ -18,8 +18,13 @@ public class UIInventory : MonoBehaviour
     }
     private void UpdateUI()
     {
+        if(content == null || itemUIPrefab == null || inventoryUI == null)
+        {
+            return;
+        }
         foreach (Transform child in content)
         {
+            if(child != null)
             Destroy(child.gameObject);
         }
         foreach (var slot in Inventory.Instance.slots)

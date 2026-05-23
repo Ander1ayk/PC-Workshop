@@ -15,6 +15,8 @@ public class PlayerInteract : MonoBehaviour
     [SerializeField] private GameObject showCollectedItems;
     [SerializeField] private TMPro.TextMeshProUGUI collectedItemsText;
     [SerializeField] private Image collectedItemsImage;
+    [Header("UI Saves")]
+    [SerializeField] private TMPro.TextMeshProUGUI saveNotificationText;
     private bool isPaused = false;
     private bool isGuideOpen = false;
 
@@ -63,7 +65,12 @@ public class PlayerInteract : MonoBehaviour
             TogglePause();
             Debug.Log("Pause have to be");
         }
-        if(Input.GetKeyDown(KeyCode.H))
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            SaveSystem.Instance.SaveGame();
+            ShowSaveMessage();
+        }
+        if (Input.GetKeyDown(KeyCode.H))
         {
             ToggleGuide();
             Debug.Log("Guide have to be");
@@ -166,10 +173,12 @@ public class PlayerInteract : MonoBehaviour
     private void OnEnable()
     {
         GameEvents.OnItemCollectedFromBox += ShowCollectedItem;
+        GameEvents.OnAutoSaveRequested += HandleAutoSaveRequested;
     }
     private void OnDisable()
     {
         GameEvents.OnItemCollectedFromBox -= ShowCollectedItem;
+        GameEvents.OnAutoSaveRequested -= HandleAutoSaveRequested;
     }
     private void ShowCollectedItem(ItemsData items)
     {
@@ -213,5 +222,37 @@ public class PlayerInteract : MonoBehaviour
             PlayerStateController.Instance.SetState(PlayerState.lookInventory);
             UIInventory.Instance.Show();
         }
+    }
+    private void HandleAutoSaveRequested()
+    {
+        StartCoroutine(ShowSaveNotification());
+    }
+    private IEnumerator ShowSaveNotification()
+    {
+        if (saveNotificationText == null)
+        {
+            Debug.LogError("Save notification text is not assigned.");
+            yield break;
+        }
+        saveNotificationText.text = "Auto-saved game";
+        saveNotificationText.gameObject.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        saveNotificationText.gameObject.SetActive(false);
+    }
+    private void ShowSaveMessage()
+    {
+        if (saveNotificationText == null)
+        {
+            Debug.LogError("Save notification text is not assigned.");
+            return;
+        }
+        saveNotificationText.text = "Game saved";
+        saveNotificationText.gameObject.SetActive(true);
+        StartCoroutine(HideSaveMessageAfterDelay());
+    }
+    private IEnumerator HideSaveMessageAfterDelay()
+    {
+        yield return new WaitForSeconds(2f);
+        saveNotificationText.gameObject.SetActive(false);
     }
 }
