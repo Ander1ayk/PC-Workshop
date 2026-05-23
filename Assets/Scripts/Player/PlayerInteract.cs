@@ -38,6 +38,28 @@ public class PlayerInteract : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            if (PlayerStateController.Instance.CurrentState == PlayerState.lookInventory)
+            {
+                UIInventory.Instance.Hide();
+                PlayerStateController.Instance.SetState(PlayerState.moving);
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+                return;
+            }
+
+            if (PlayerStateController.Instance.CurrentState == PlayerState.guide)
+            {
+                guidePanel.SetActive(false);
+                isGuideOpen = false;
+                PlayerStateController.Instance.SetState(PlayerState.moving);
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+                return;
+            }
+            if (PlayerStateController.Instance.CurrentState == PlayerState.ui)
+            {
+                return;
+            }
             TogglePause();
             Debug.Log("Pause have to be");
         }
