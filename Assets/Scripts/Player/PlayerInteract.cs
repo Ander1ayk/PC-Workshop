@@ -130,7 +130,6 @@ public class PlayerInteract : MonoBehaviour
         Cursor.lockState = isPaused
             ? CursorLockMode.None
             : CursorLockMode.Locked;
-
         Cursor.visible = isPaused;
     }
     private void ToggleGuide()
