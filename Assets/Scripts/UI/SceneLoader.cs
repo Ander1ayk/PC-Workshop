@@ -12,7 +12,7 @@ public class SceneLoader : MonoBehaviour
     [SerializeField] private Image progressBar;
 
     private bool loadSaveAfterScene;
-
+    public static bool ShouldLoadGameAfterScene;
     private void Awake()
     {
         if (Instance !=null && Instance != this)
@@ -31,6 +31,7 @@ public class SceneLoader : MonoBehaviour
         SaveSystem.Instance.DeleteSaveData();
         SaveSystem.Instance.ResetGameCompleted();
         loadSaveAfterScene = false;
+        ShouldLoadGameAfterScene = false;
         StartCoroutine(LoadSceneAsync(sceneName));
     }
     public void ContinueGame(string sceneName)
@@ -43,7 +44,8 @@ public class SceneLoader : MonoBehaviour
             return;
         }
         Time.timeScale = 1f;
-        loadSaveAfterScene = true;
+        loadSaveAfterScene = true; 
+        ShouldLoadGameAfterScene = true;
         StartCoroutine(LoadSceneAsync(sceneName));
     }
     public void LoadScene(string sceneName)
@@ -67,10 +69,6 @@ public class SceneLoader : MonoBehaviour
             if(progressBar != null)
                 progressBar.fillAmount = progress;
             yield return null;
-        }
-        if (loadSaveAfterScene)
-        {
-            SaveSystem.Instance.LoadGame();
         }
         if (loadingScreen != null)
             loadingScreen.SetActive(false);

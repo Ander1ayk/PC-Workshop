@@ -18,7 +18,11 @@ public class NPCManager : MonoBehaviour
     private void Start()
     {
         npcPrefabs.Sort((a, b) => a.npcData.npcLevel.CompareTo(b.npcData.npcLevel));
-        
+        if (SceneLoader.ShouldLoadGameAfterScene && SaveSystem.Instance.HasSaveData())
+        {
+            SaveSystem.Instance.LoadGame();
+            SceneLoader.ShouldLoadGameAfterScene = false;
+        }
         SpawnNPC();
     }
 
