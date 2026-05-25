@@ -4,7 +4,7 @@ using UnityEngine;
 public class AutoSaveManager : MonoBehaviour
 {
     private Coroutine saveRoutine;
-
+    private float saveDelay = 5f;
     private void OnEnable()
     {
         GameEvents.OnInventoryChanged += RequestSave;
@@ -23,7 +23,7 @@ public class AutoSaveManager : MonoBehaviour
     }
     private IEnumerator AutoSave()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(saveDelay);
 
         SaveSystem.Instance.SaveGame();
         saveRoutine = null;

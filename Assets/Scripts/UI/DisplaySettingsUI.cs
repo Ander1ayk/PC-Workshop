@@ -35,26 +35,36 @@ public class DisplaySettingsUI : MonoBehaviour
     }
     private void SetupResolutions()
     {
-        resolutions = Screen.resolutions;
+        Resolution[] allResolutions = Screen.resolutions;
+
+        List<Resolution> uniqueResolutions = new List<Resolution>();
+        List<string> options = new List<string>();
 
         resolutionDropdown.ClearOptions();
 
-        List<string> options = new List<string>();
+        int savedWidth = PlayerPrefs.GetInt("ResolutionWidth", Screen.currentResolution.width);
+        int savedHeight = PlayerPrefs.GetInt("ResolutionHeight", Screen.currentResolution.height);
+
         int currentResolutionIndex = 0;
 
-        int saveWidth = PlayerPrefs.GetInt("ResolutionWidth", Screen.currentResolution.width);
-        int saveHeight = PlayerPrefs.GetInt("ResolutionHeight", Screen.currentResolution.height);
-
-        for(int i = 0; i < resolutions.Length; i++)
+        foreach (Resolution res in allResolutions)
         {
-            string option = resolutions[i].width + " x " + resolutions[i].height;
-            options.Add(option);
+            string option = res.width + " x " + res.height;
 
-            if(resolutions[i].width == saveWidth && resolutions[i].height == saveHeight)
+            if (options.Contains(option))
+                continue;
+
+            options.Add(option);
+            uniqueResolutions.Add(res);
+
+            if (res.width == savedWidth && res.height == savedHeight)
             {
-                currentResolutionIndex = i;
+                currentResolutionIndex = uniqueResolutions.Count - 1;
             }
         }
+
+        resolutions = uniqueResolutions.ToArray();
+
         resolutionDropdown.AddOptions(options);
         resolutionDropdown.value = currentResolutionIndex;
         resolutionDropdown.RefreshShownValue();
