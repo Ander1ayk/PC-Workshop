@@ -12,7 +12,13 @@ public class PCSlot : MonoBehaviour, IPCInteractable
     }
     public void InteractWithPC()
     {
-        if (isInstalled) return;
+        Debug.Log("Interact with slot: " + gameObject.name);
+
+        if (isInstalled)
+        {
+            Debug.Log("Slot already installed: " + gameObject.name);
+            return;
+        }
         PCAssemblyManager.Instance.StartPlacing(this);
     }
     public void TryInstall(ItemsData item)

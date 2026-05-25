@@ -58,7 +58,7 @@ public class PlayerInteract : MonoBehaviour
                 Cursor.visible = false;
                 return;
             }
-            if (PlayerStateController.Instance.CurrentState == PlayerState.ui)
+            if (PlayerStateController.Instance.CurrentState == PlayerState.ui || PlayerStateController.Instance.CurrentState == PlayerState.assembling)
             {
                 return;
             }
